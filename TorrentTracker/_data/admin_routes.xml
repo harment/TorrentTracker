@@ -1,0 +1,17 @@
+<routes>
+    <route>
+        <route_url>admin.php?vip</route_url>
+        <controller>TorrentTracker:Vip</controller>
+        <action>Index</action>
+    </route>
+    <route>
+        <route_url>admin.php?vip/edit/:user_id</route_url>
+        <controller>TorrentTracker:Vip</controller>
+        <action>Edit</action>
+    </route>
+    <route>
+        <route_url>admin.php?vip/save/:user_id</route_url>
+        <controller>TorrentTracker:Vip</controller>
+        <action>Save</action>
+    </route>
+</routes>

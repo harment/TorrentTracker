@@ -1,0 +1,16 @@
+<xf:title>🔹 حالة VIP الخاصة بك</xf:title>
+
+<div class="block">
+    <div class="block-container">
+        <div class="block-body">
+            <h2>🎉 مرحبًا بك في VIP!</h2>
+
+            <xf:if is="$xf.visitor.vip_status">
+                <p>✅ أنت عضو VIP! ينتهي اشتراكك في: <strong>{$xf.visitor.vip_expiry|date}</strong></p>
+            <xf:else />
+                <p>🚫 ليس لديك اشتراك VIP حاليًا.</p>
+                <a href="vip/subscribe" class="button--cta">🔹 اشترك الآن</a>
+            </xf:if>
+        </div>
+    </div>
+</div>

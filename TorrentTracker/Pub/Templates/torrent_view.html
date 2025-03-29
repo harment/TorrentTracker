@@ -1,0 +1,54 @@
+<xf:title>تحميل التورنت - {$torrent.file_name}</xf:title>
+<xf:if is="!$xf.visitor.hasThankedTorrent($torrent.torrent_id)">
+    <p class="badge badge-blue">🔹 يجب أن تشكر رافع التورنت قبل التحميل.</p>
+    <button onclick="thankTorrent({$torrent.torrent_id})" class="button--primary">🙏 اضغط للشكر</button>
+</xf:if>
+
+<div class="block">
+    <div class="block-container">
+        <div class="block-body">
+            <h2>{$torrent.file_name}</h2>
+            <p><strong>الحجم:</strong> {number_format($torrent.file_size / 1024 / 1024, 2)} MB</p>
+            <p><strong>Seeders:</strong> {$torrent.seeders}</p>
+            <p><strong>Leechers:</strong> {$torrent.leechers}</p>
+            <p><strong>Snatches:</strong> {$stats.completed}</p>
+
+            <xf:if is="$torrent.global_freeleech">
+                <p class="badge badge-green">🎉 هذا التورنت مجاني (لا يؤثر على الريشيو)</p>
+            </xf:if>
+
+            <xf:if is="!$xf.visitor.canDownloadTorrent()">
+                <p class="badge badge-red">🚫 يجب أن يكون لديك نسبة ريشيو أعلى من {$xf.options.min_ratio} لتحميل هذا التورنت.</p>
+            <xf:else />
+                <a href="torrents/download/{$torrent.torrent_id}" class="button--cta">📥 تحميل التورنت</a>
+            </xf:if>
+
+            <h3>👥 قائمة الـ Peers</h3>
+            <table class="dataList">
+                <thead>
+                    <tr>
+                        <th>المستخدم</th>
+                        <th>الحالة</th>
+                        <th>تم الرفع</th>
+                        <th>تم التحميل</th>
+                        <th>المتبقي</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <xf:foreach loop="$peers" key="$peer">
+                        <tr>
+                            <td>{$peer.username}</td>
+                            <td><xf:if is="$peer.seeder">Seeder<xf:else />Leecher</xf:if></td>
+                            <td>{number_format($peer.uploaded / 1024 / 1024, 2)} MB</td>
+                            <td>{number_format($peer.downloaded / 1024 / 1024, 2)} MB</td>
+                            <td>{number_format($peer.left / 1024 / 1024, 2)} MB</td>
+                        </tr>
+                    </xf:foreach>
+                </tbody>
+            </table>
+
+            <h3>💬 التعليقات</h3>
+            <xf:macro name="comment_form" arg-threadId="{$torrent.torrent_id}" />
+        </div>
+    </div>
+</div>

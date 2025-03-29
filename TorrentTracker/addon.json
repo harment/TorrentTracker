@@ -1,0 +1,9 @@
+{
+    "legacy_addon_id": "",
+    "title": "TorrentTracker",
+    "version_id": 1000010,
+    "version_string": "1.0.0",
+    "description": "إضافة لتحميل التورنت مع نظام VIP في XenForo",
+    "developer": "Admin",
+    "icon": "fa-download"
+}
